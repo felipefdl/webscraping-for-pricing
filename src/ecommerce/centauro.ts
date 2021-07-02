@@ -1,7 +1,10 @@
 import { fetchParams, fetchProducts, fetchResult } from "../interfaces";
+const userAgent =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36";
 
 async function centauro(fetchParams: fetchParams): Promise<fetchResult> {
-  const browser = await fetchParams.browserInstance.newContext();
+  const browser = await fetchParams.browserInstance.newContext({ userAgent });
+
   const page = await browser.newPage();
   await page.goto(`https://www.centauro.com.br/busca?q=${encodeURIComponent(fetchParams.searchFor)}`);
   await page.waitForSelector(".product-card");

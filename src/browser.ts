@@ -17,7 +17,9 @@ async function startBrowser({ showBrowser = false, slowMo = 0 }) {
  * Fecha a instancia do browser
  */
 async function stopBrowser() {
-  browser.close();
+  if (browser) {
+    await browser.close();
+  }
 }
 
 export { startBrowser, stopBrowser };

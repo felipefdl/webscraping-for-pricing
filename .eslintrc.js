@@ -23,6 +23,7 @@ module.exports = {
     "plugin:import/typescript",
     "eslint:recommended"
   ],
+  ignorePatterns: ["jest.config.js", ".eslintrc.js", "coverage/**"],
   rules: {
     "import/order": 1
   },

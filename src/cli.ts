@@ -9,7 +9,7 @@ import tccWebScrapping from "./index";
 async function init() {
   const stores = Object.keys(ecommerces);
 
-  const { ecommerceOptions, output, searchFor } = await prompts([
+  const { ecommerceOptions, output, searchFor, restrictName } = await prompts([
     {
       instructions: false,
       type: "multiselect",
@@ -20,10 +20,18 @@ async function init() {
       hint: "- Aperte espaço para selecionar. Enter para continuar",
     },
     {
-      initial: "Tênis Nike Revolution; Adidas",
+      initial: "Tênis Nike; Tênis Adidas",
       type: "text",
       name: "searchFor",
       message: `Qual nome do produto que deseja procurar? Para múltiplos use ;`,
+    },
+    {
+      initial: false,
+      type: "toggle",
+      name: "restrictName",
+      message: "Ignorar produtos similares?",
+      active: "sim",
+      inactive: "não",
     },
     {
       type: "select",
@@ -51,7 +59,7 @@ async function init() {
   }
 
   console.info("Iniciando pesquisa...\n");
-  const result = await tccWebScrapping({ ecommerceOptions, searchFor });
+  const result = await tccWebScrapping({ ecommerceOptions, searchFor, restrictName });
 
   if (fileXLSX) {
     writeXLSX(result, fileXLSX);

@@ -74,4 +74,13 @@ describe("Index of lib", () => {
     expect(Object.keys(result[5].products)).toHaveLength(1);
     expect(result[5].products?.adidas).toHaveProperty("toPrecision");
   });
+
+  test("E-Commerce web scrapping script not exists", async () => {
+    try {
+      const result = await tccWebScrapping({ ecommerceOptions: ["noExists"], searchFor: "testArg;nike;adidas" });
+      expect(result).toBeNull();
+    } catch (error) {
+      expect(error).toBe("E-commerce option (noExists) is not available");
+    }
+  });
 });

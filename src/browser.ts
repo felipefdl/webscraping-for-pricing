@@ -19,6 +19,7 @@ async function startBrowser({ showBrowser = false, slowMo = 0 }) {
 async function stopBrowser() {
   if (browser) {
     await browser.close();
+    browser = undefined;
   }
 }
 

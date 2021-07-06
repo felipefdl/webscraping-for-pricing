@@ -18,6 +18,7 @@ interface fetchProducts {
 interface WebsScrappingParams {
   ecommerceOptions: string[];
   searchFor: string;
+  restrictName?: boolean;
 }
 
 export { fetchParams, fetchResult, fetchProducts, WebsScrappingParams };

@@ -12,7 +12,13 @@ async function tccWebScrapping(params: WebsScrappingParams) {
     item = item.trim();
 
     for (const ecommerceOption of params.ecommerceOptions) {
-      fetchTasks.push(ecommerces[ecommerceOption]({ browserInstance, searchFor: item }));
+      if (!ecommerces[ecommerceOption]) {
+        return Promise.reject(`E-commerce option (${ecommerceOption}) is not available`);
+      }
+
+      fetchTasks.push(
+        ecommerces[ecommerceOption]({ browserInstance, searchFor: item, restrictName: params.restrictName || false })
+      );
     }
   }
 

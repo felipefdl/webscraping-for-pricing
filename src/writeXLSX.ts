@@ -31,6 +31,7 @@ function writeXLSX(scrappingData: fetchResult[], fileName: string) {
 
   //@ts-ignore
   writeFileSync(`./${fileName}`, buffer, { encoding: "utf-8" });
+  console.log("Arquivo salvo em", `./${fileName}`);
 }
 
 export default writeXLSX;
